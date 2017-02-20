@@ -3,9 +3,10 @@
 
 erlon.dev@gmail.com
 
+## Getting Started
 
-# Getting Started
-
-## Iniciando
+* /Experts/ => Executables
+* /Include/Robots/ => Source
+* /Include/Framework/ => Source Base
 
 
