@@ -14,6 +14,8 @@ no mercado de negociação, porém outras nem tanto. Irei retratar todas as func
 de criação de robôs proporciona. Logo abaixo estão as configurações por seções, e em cada seção suas respectivas
 variáveis.
 
+![Definições](/Include/Images/definicoes_basicas.JPG)
+
 * Definições Básicas
 
 | Variavel | Descrição |
@@ -93,7 +95,22 @@ variáveis.
 As estratégias abaixo que se encontram em "[/Experts](/Experts)" utilizam o Framework base:
 
 - [Box of consolidation](/Experts/BoxOfConsolidation);
+	![box_marcacoes](/Include/Images/box_of_consolidation_marcacoes.JPG)
+	![box_compra](/Include/Images/box_of_consolidation_entrada_compra.JPG)
+	![box_compra_gain](/Include/Images/box_of_consolidation_entrada_compra_gain.JPG)
+
 - [Line of division](/Experts/TheLineOfDivision);
+	![first_candle_marcacoes](/Include/Images/the_line_of_division_marcacoes.JPG)
+	![first_candle_marcacoes](/Include/Images/the_line_of_division_marcacao_macro.JPG)
+	![first_candle_marcacoes](/Include/Images/the_line_of_division_entrada_venda.JPG)
+	![first_candle_marcacoes](/Include/Images/the_line_of_division_entrada_venda_em_andamento.JPG)
+	![first_candle_marcacoes](/Include/Images/the_line_of_division_entrada_venda_em_andamento_2.JPG)
+	![first_candle_marcacoes](/Include/Images/the_line_of_division_entrada_venda_stop.JPG)
+
 - [First candle](/Experts/FirstCandle);
+	![first_candle_marcacoes](/Include/Images/first_candle_marcacoes.JPG)
+	![first_candle_marcacoes](/Include/Images/first_candle_entrada_compra.JPG)
+	![first_candle_marcacoes](/Include/Images/first_candle_entrada_compra_em_andamento.JPG)
+	![first_candle_marcacoes](/Include/Images/first_candle_entrada_compra_gain.JPG)
 
 
