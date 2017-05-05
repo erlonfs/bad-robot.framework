@@ -3,7 +3,7 @@
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
 
-#property copyright "Copyright 2016, MetaQuotes Software Corp."
+#property copyright "Copyright 2017, MetaQuotes Software Corp."
 #property link      "https://www.mql5.com"
 #property version   "1.00"
 
@@ -21,10 +21,6 @@ private:
 	//Estrategia
 	double _maxima;
 	double _minima;
-
-	bool _waitBuy;
-	bool _waitSell;
-	int _qtdCopiedRates;
 
 	//Grafico 	   
 	color _corBuy;
@@ -69,11 +65,11 @@ public:
 		AtualizarLastPrice();
 
 		if (HasPositionOpen()) {
-			GerenciarPosition();
+			ManagePosition();
 			return;
 		}
 
-		if (!Validar()) {
+		if (!Validate()) {
 			return;
 		}
 
@@ -85,14 +81,20 @@ public:
 
 	};
 
-	void Desenhar(double price, color cor)
+	void Desenhar()
 	{
 		if (!_isDesenhar) {
 			return;
-		}		
+		}	
+		
+		//Drawn something
+			
 	}
 
-	bool GetBuffers() {		
+	bool GetBuffers() {	
+	
+	   //Get Buffers
+		
 		return true;
 	}
 

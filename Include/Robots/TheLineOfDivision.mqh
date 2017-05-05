@@ -105,11 +105,11 @@ public:
 		AtualizarLastPrice();
 
 		if (HasPositionOpen()) {
-			GerenciarPosition();
+			ManagePosition();
 			return;
 		}
 
-		if (!Validar()) {
+		if (!Validate()) {
 			return;
 		}
 
