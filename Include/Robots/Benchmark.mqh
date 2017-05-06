@@ -13,90 +13,87 @@
 
 class Benchmark : public Base
 {
-private:
-	//Price   		
-	MqlRates _rates[];
-	ENUM_TIMEFRAMES _period;
-
-	//Estrategia
-	double _maxima;
-	double _minima;
-
-	//Grafico 	   
-	color _corBuy;
-	color _corSell;
-	color _cor;
-	bool _isDesenhar;
-	bool _isEnviarParaTras;
-	bool _isPreencher;
-	
-	void Draw()
-	{
-		if (!_isDesenhar) {
-			return;
-		}	
-		
-		//Drawn something
-			
-	}
-
-	bool GetBuffers() {	
-	
-	   //Get Buffers
-		
-		return true;
-	}
-
-public:
-
-	void SetColor(color cor) {
-		_cor = cor;
-	}
-
-	void SetIsDesenhar(bool isDesenhar) {
-		_isDesenhar = isDesenhar;
-	}
-
-	void SetIsEnviarParaTras(bool isEnviarParaTras) {
-		_isEnviarParaTras = isEnviarParaTras;
-	}
-
-	void SetIsPreencher(bool isPreencher) {
-		_isPreencher = isPreencher;
-	}
-
-	void SetColorBuy(color cor) {
-		_corBuy = cor;
-	};
-
-	void SetColorSell(color cor) {
-		_corSell = cor;
-	};
-
-	void Load() {
-
-	};
-
-	void Execute() {
-
-		RefreshLastPrice();
-
-		if (HasPositionOpen()) {
-			ManagePosition();
-			return;
-		}
-
-		if (!Validate()) {
-			return;
-		}
-
-		if (GetBuffers()) {
-
-			ShowInfo();
-
-		}
-
-	};
-
+   private:
+   
+   	//Estrategia
+   	MqlRates _rates[];
+   	ENUM_TIMEFRAMES _period;
+   	double _maxima;
+   	double _minima;
+   
+   	//UI 	   
+   	color _corBuy;
+   	color _corSell;
+   	color _cor;
+   	bool _isDesenhar;
+   	bool _isEnviarParaTras;
+   	bool _isPreencher;
+   	
+   	void Draw()
+   	{
+   		if (!_isDesenhar) {
+   			return;
+   		}	
+   		
+   		//Drawn something
+   			
+   	}
+   
+   	bool GetBuffers() {	
+   	
+   	   //Get Buffers
+   		
+   		return true;
+   	}
+   
+   public:
+   
+   	void SetColor(color cor) {
+   		_cor = cor;
+   	}
+   
+   	void SetIsDesenhar(bool isDesenhar) {
+   		_isDesenhar = isDesenhar;
+   	}
+   
+   	void SetIsEnviarParaTras(bool isEnviarParaTras) {
+   		_isEnviarParaTras = isEnviarParaTras;
+   	}
+   
+   	void SetIsPreencher(bool isPreencher) {
+   		_isPreencher = isPreencher;
+   	}
+   
+   	void SetColorBuy(color cor) {
+   		_corBuy = cor;
+   	};
+   
+   	void SetColorSell(color cor) {
+   		_corSell = cor;
+   	};
+   
+   	void Load() {
+   
+   	};
+   
+   	void Execute() {
+   
+   		RefreshLastPrice();
+   
+   		if (HasPositionOpen()) {
+   			ManagePosition();
+   			return;
+   		}
+   
+   		if (!Validate()) {
+   			return;
+   		}
+   
+   		if (GetBuffers()) {  
+   			ShowInfo();
+   
+   		}
+   
+   	};
 };
 
