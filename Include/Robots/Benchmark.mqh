@@ -3,7 +3,7 @@
 //|                                       https://github.com/erlonfs |
 //+------------------------------------------------------------------+
 
-#property copyright "Copyright 2016, Erlon F. Souza"
+#property copyright "Copyright 2017, Erlon F. Souza"
 #property link      "https://github.com/erlonfs"
 #property version   "1.00"
 
@@ -29,6 +29,23 @@ private:
 	bool _isDesenhar;
 	bool _isEnviarParaTras;
 	bool _isPreencher;
+	
+	void Draw()
+	{
+		if (!_isDesenhar) {
+			return;
+		}	
+		
+		//Drawn something
+			
+	}
+
+	bool GetBuffers() {	
+	
+	   //Get Buffers
+		
+		return true;
+	}
 
 public:
 
@@ -60,9 +77,9 @@ public:
 
 	};
 
-	void Watch() {
+	void Execute() {
 
-		AtualizarLastPrice();
+		RefreshLastPrice();
 
 		if (HasPositionOpen()) {
 			ManagePosition();
@@ -80,23 +97,6 @@ public:
 		}
 
 	};
-
-	void Desenhar()
-	{
-		if (!_isDesenhar) {
-			return;
-		}	
-		
-		//Drawn something
-			
-	}
-
-	bool GetBuffers() {	
-	
-	   //Get Buffers
-		
-		return true;
-	}
 
 };
 

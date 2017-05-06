@@ -33,70 +33,7 @@ private:
 	bool _isDesenhar;
 	bool _isEnviarParaTras;
 	bool _isPreencher;
-
-public:
-
-	void SetColor(color cor) {
-		_cor = cor;
-	}
-
-	void SetIsDesenhar(bool isDesenhar) {
-		_isDesenhar = isDesenhar;
-	}
-
-	void SetIsEnviarParaTras(bool isEnviarParaTras) {
-		_isEnviarParaTras = isEnviarParaTras;
-	}
-
-	void SetIsPreencher(bool isPreencher) {
-		_isPreencher = isPreencher;
-	}
-
-	void SetColorBuy(color cor) {
-		_corBuy = cor;
-	};
-
-	void SetColorSell(color cor) {
-		_corSell = cor;
-	};
-
-	void Load() {
-
-	};
-
-	void Watch() {
-
-		AtualizarLastPrice();
-
-		if (HasPositionOpen()) {
-			ManagePosition();
-			return;
-		}
-
-		if (!Validate()) {
-			return;
-		}
-
-		if (GetBuffers()) {
-
-			ExcluirDesenho(_maxima);
-			ExcluirDesenho(_minima);
-
-			if (FindCondition()) {
-				Desenhar(_minima, _corSell);
-				Desenhar(_maxima, _corBuy);
-
-				VerifyStrategy(ORDER_TYPE_BUY);
-				VerifyStrategy(ORDER_TYPE_SELL);
-			}
-
-			SetInfo("COMPRA " + (string)_maxima + " VENDA " + (string)_minima);
-			ShowInfo();
-
-		}
-
-	};
-
+	
 	void VerifyStrategy(int order) {
 
 		if (order == ORDER_TYPE_BUY) {
@@ -170,7 +107,7 @@ public:
 
 	}
 
-	void Desenhar(double price, color cor)
+	void Draw(double price, color cor)
 	{
 
 		if (!_isDesenhar) {
@@ -198,7 +135,7 @@ public:
 		ObjectSetString(0, objName, OBJPROP_TEXT, "ENTRADA EM " + (string)price);
 	}
 
-	void ExcluirDesenho(double price) {
+	void ClearDraw(double price) {
 
 		if (!_isDesenhar) {
 			return;
@@ -233,6 +170,69 @@ public:
 		return copiedRates > 0;
 
 	}
+
+public:
+
+	void SetColor(color cor) {
+		_cor = cor;
+	}
+
+	void SetIsDesenhar(bool isDesenhar) {
+		_isDesenhar = isDesenhar;
+	}
+
+	void SetIsEnviarParaTras(bool isEnviarParaTras) {
+		_isEnviarParaTras = isEnviarParaTras;
+	}
+
+	void SetIsPreencher(bool isPreencher) {
+		_isPreencher = isPreencher;
+	}
+
+	void SetColorBuy(color cor) {
+		_corBuy = cor;
+	};
+
+	void SetColorSell(color cor) {
+		_corSell = cor;
+	};
+
+	void Load() {
+
+	};
+
+	void Execute() {
+
+		RefreshLastPrice();
+
+		if (HasPositionOpen()) {
+			ManagePosition();
+			return;
+		}
+
+		if (!Validate()) {
+			return;
+		}
+
+		if (GetBuffers()) {
+
+			ClearDraw(_maxima);
+			ClearDraw(_minima);
+
+			if (FindCondition()) {
+				Draw(_minima, _corSell);
+				Draw(_maxima, _corBuy);
+
+				VerifyStrategy(ORDER_TYPE_BUY);
+				VerifyStrategy(ORDER_TYPE_SELL);
+			}
+
+			SetInfo("COMPRA " + (string)_maxima + " VENDA " + (string)_minima);
+			ShowInfo();
+
+		}
+
+	};
 
 };
 
