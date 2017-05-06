@@ -1,10 +1,10 @@
 //+------------------------------------------------------------------+
-//|                        Copyright 2016, MetaQuotes Software Corp. |
-//|                                             https://www.mql5.com |
+//|                                   Copyright 2017, Erlon F. Souza |
+//|                                       https://github.com/erlonfs |
 //+------------------------------------------------------------------+
 
-#property copyright "Copyright 2017, MetaQuotes Software Corp."
-#property link      "https://www.mql5.com"
+#property copyright "Copyright 2016, Erlon F. Souza"
+#property link      "https://github.com/erlonfs"
 #property version   "1.00"
 
 #include <Trade\Trade.mqh>
