@@ -77,18 +77,9 @@ class Benchmark : public Base
    	};
    
    	void Execute() {
-   
-   		RefreshLastPrice();
-   
-   		if (HasPositionOpen()) {
-   			ManagePosition();
-   			return;
-   		}
-   
-   		if (!Validate()) {
-   			return;
-   		}
-   
+   	
+   	   if(!Base::ExecuteBase()) return;
+      		
    		if (GetBuffers()) {  
    			ShowInfo();
    
