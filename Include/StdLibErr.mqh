@@ -1,6 +1,6 @@
 //+------------------------------------------------------------------+
 //|                                                    StdLibErr.mqh |
-//|                   Copyright 2009-2015, MetaQuotes Software Corp. |
+//|                   Copyright 2009-2017, MetaQuotes Software Corp. |
 //|                                              http://www.mql5.com |
 //+------------------------------------------------------------------+
 #define ERR_USER_INVALID_HANDLE                            1
