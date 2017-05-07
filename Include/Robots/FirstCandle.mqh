@@ -5,7 +5,7 @@
 
 #property copyright "Copyright 2016, Erlon F. Souza"
 #property link      "https://github.com/erlonfs"
-#property version   "1.00"
+#property version   "1.01"
 
 #include <Trade\Trade.mqh>
 #include <Trade\PositionInfo.mqh>
@@ -29,7 +29,6 @@ private:
 	//Grafico 	   
 	color _corBuy;
 	color _corSell;
-	color _cor;
 	bool _isDesenhar;
 	bool _isEnviarParaTras;
 	bool _isPreencher;
@@ -42,7 +41,7 @@ private:
 			double _auxStopGain = NormalizeDouble((_entrada + GetStopGain()), _Digits);
 			double _auxStopLoss = NormalizeDouble((_entrada - GetStopLoss()), _Digits);
 
-			if (GetLastPrice().last >= _entrada) {
+			if (GetPrice().last >= _entrada) {
 
 				if (!HasPositionOpen()) {
 					_waitBuy = false;
@@ -62,7 +61,7 @@ private:
 			double _auxStopGain = NormalizeDouble((_entrada - GetStopGain()), _Digits);
 			double _auxStopLoss = NormalizeDouble((_entrada + GetStopLoss()), _Digits);
 
-			if (GetLastPrice().last <= _entrada) {
+			if (GetPrice().last <= _entrada) {
 
 				if (!HasPositionOpen()) {
 					_waitSell = false;
@@ -95,7 +94,7 @@ private:
 					isMatch = false;
 				}
 
-				if (GetLastPrice().last > _maxima + GetSpread() || GetLastPrice().last < _minima - GetSpread()) {
+				if (GetPrice().last > _maxima + GetSpread() || GetPrice().last < _minima - GetSpread()) {
 					isMatch = false;
 				}
 
@@ -173,10 +172,6 @@ private:
 
 public:
 
-	void SetColor(color cor) {
-		_cor = cor;
-	}
-
 	void SetIsDesenhar(bool isDesenhar) {
 		_isDesenhar = isDesenhar;
 	}
@@ -203,16 +198,7 @@ public:
 
 	void Execute() {
 
-		RefreshLastPrice();
-
-		if (HasPositionOpen()) {
-			ManagePosition();
-			return;
-		}
-
-		if (!Validate()) {
-			return;
-		}
+		if(!Base::ExecuteBase()) return;
 
 		if (GetBuffers()) {
 

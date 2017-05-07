@@ -52,7 +52,7 @@ private:
 			double _auxStopGain = NormalizeDouble((_entrada + GetStopGain()), _Digits);
 			double _auxStopLoss = NormalizeDouble((_entrada - GetStopLoss()), _Digits);
 
-			if (GetLastPrice().last >= _entrada) {
+			if (GetPrice().last >= _entrada) {
 
 				if (!HasPositionOpen()) {
 					_waitBuy = false;
@@ -72,7 +72,7 @@ private:
 			double _auxStopGain = NormalizeDouble((_entrada - GetStopGain()), _Digits);
 			double _auxStopLoss = NormalizeDouble((_entrada + GetStopLoss()), _Digits);
 
-			if (GetLastPrice().last <= _entrada) {
+			if (GetPrice().last <= _entrada) {
 
 				if (!HasPositionOpen()) {
 					_waitSell = false;
@@ -122,7 +122,7 @@ private:
 				}
 
 				isFound = auxMaxCount >= _qtdToques;
-				isFound = isFound && GetLastPrice().last <= auxMax;
+				isFound = isFound && GetPrice().last <= auxMax;
 
 			}
 
@@ -177,7 +177,7 @@ private:
 				}
 
 				isFound = auxMinCount >= _qtdToques;
-				isFound = isFound && GetLastPrice().last >= auxMin;
+				isFound = isFound && GetPrice().last >= auxMin;
 
 			}
 
@@ -311,16 +311,7 @@ public:
 
 	void Execute() {
 
-		RefreshLastPrice();
-		
-		if (HasPositionOpen()) {
-			ManagePosition();
-			return;
-		}
-
-		if (!Validate()) {
-			return;
-		}
+		if(!Base::ExecuteBase()) return;
 
 		if (GetBuffers()) {
 

@@ -6,10 +6,10 @@ Por erlon.dev@gmail.com
 
 Esse projeto foi desenvolvido para facilitar a criação de robôs traders escritos na linguagem [mql5](https://www.mql5.com/pt)
 para a plataforma metatrader 5. Todos os robôs encontram se no diretorio "/Experts", acompanhados de um arquivo .set 
-de configuração da estratégia. Inicialmente o projeto foi feito para atender ao mercado de mini contratos futuros da 
-bolsa de valores de são paulo (BOVESPA). Para compilar os robôs é necessario acessar o editor de código do metatrader 5.
+de configuração da estratégia. Inicialmente o projeto foi feito para atender ao mercado de BMF, mais especificamente os mini-contratos 
+de índice e dólar. Para compilar os robôs é necessario acessar o editor de código do metatrader 5.
 
-Cada robô possui sua estratégia, contudo todos possuem funcionalidades basicas em comun, muitas delas já conhecidas 
+Cada robô possui sua estratégia, contudo todos possuem funcionalidades basicas em comum, muitas delas já conhecidas 
 no mercado de negociação, porém outras nem tanto. Irei retratar todas as funcionalidades que o framework 
 de criação de robôs proporciona. Logo abaixo estão as configurações por seções, e em cada seção suas respectivas
 variáveis.
