@@ -5,7 +5,6 @@
 
 #property copyright "Copyright 2016, Erlon F. Souza"
 #property link      "https://github.com/erlonfs"
-#property version   "1.00"
 
 #include <Trade\Trade.mqh>
 #include <Trade\PositionInfo.mqh>
