@@ -15,14 +15,7 @@ class Benchmark : public Base
    private:
    
    	MqlRates _rates[];
-   	ENUM_TIMEFRAMES _period;
-  
-   
-   	bool GetBuffers() 
-   	{	
-   		//TODO
-   		return 0;
-   	}
+   	ENUM_TIMEFRAMES _period;     
    
    public:
       
