@@ -44,7 +44,7 @@ private:
 
 				if (!HasPositionOpen()) {
 					_waitBuy = false;
-					Buy(_entrada, _auxStopLoss, _auxStopGain, getNameRobot());
+					Buy(_entrada, _auxStopLoss, _auxStopGain, getRobotName());
 				}
 
 			}
@@ -64,7 +64,7 @@ private:
 
 				if (!HasPositionOpen()) {
 					_waitSell = false;
-					Sell(_entrada, _auxStopLoss, _auxStopGain, getNameRobot());
+					Sell(_entrada, _auxStopLoss, _auxStopGain, getRobotName());
 				}
 
 			}
