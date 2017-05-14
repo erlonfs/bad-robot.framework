@@ -5,8 +5,7 @@ experts.dat
 /Profiles
 /Indicators
 /Images
-/Experts/Advisors
-/Experts/Examples
+/Experts
 
 Include/Arrays/
 Include/Canvas/
@@ -24,3 +23,4 @@ Include/Strings/
 Include/Tools/
 Include/VirtualKeys.mqh
 Scripts/
+Include/src
