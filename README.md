@@ -38,20 +38,21 @@ class Sample : public Base
    
    	void Execute() {
    	
-   	   if(!Base::ExecuteBase()) return;
+		if(!Base::ExecuteBase()) return;
       		
-         //Logic Here
+		//Logic Here
    		
-         Base::ShowInfo();
+		Base::ShowInfo();
    		   
-   	};
+	};
    	
-      void ExecuteOnTrade(){
-         Base::ExecuteOnTradeBase();
+	void ExecuteOnTrade(){
+	
+		Base::ExecuteOnTradeBase();
          
-         //TODO
+		//TODO
          
-      };
+	};
 };
 ```
 
