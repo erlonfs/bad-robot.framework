@@ -18,34 +18,42 @@ Para comecar um novo projeto, pode se utilizar o exemplo base:
 [mt5-sample-robot](https://github.com/erlonfs/mt5-sample-robot)
 
 ```c
-    #include <Trade\Trade.mqh>
-    #include <Trade\PositionInfo.mqh>
-    #include <Framework\Base.mqh>
-    
-    class Sample : public Base
-    {
-       private:
-       
-       	MqlRates _rates[];
-       	ENUM_TIMEFRAMES _period;     
-       
-       public:
-          
-       	void Load() 
-       	{
-             //TODO
-       	};
-       
-       	void Execute() {
-       	
-       	   if(!Base::ExecuteBase()) return;
-          		
-       		//Logic Here
-       		
-       		Base::ShowInfo();
-       		   
-       	};
-    };
+#include <Trade\Trade.mqh>
+#include <Trade\PositionInfo.mqh>
+#include <Framework\Base.mqh>
+
+class Sample : public Base
+{
+   private:
+   
+   	MqlRates _rates[];
+   	ENUM_TIMEFRAMES _period;     
+   
+   public:
+      
+   	void Load() 
+   	{
+         //TODO
+   	};
+   
+   	void Execute() {
+   	
+		if(!Base::ExecuteBase()) return;
+      		
+		//Logic Here
+   		
+		Base::ShowInfo();
+   		   
+	};
+   	
+	void ExecuteOnTrade(){
+	
+		Base::ExecuteOnTradeBase();
+         
+		//TODO
+         
+	};
+};
 ```
 
 Inicialmente o projeto foi feito para atender ao mercado de BMF, mais especificamente os mini-contratos 
