@@ -66,6 +66,7 @@ no mercado de negociação.
 | ------ | ------ |
 |Stop Gain | SIM |
 |Stop Loss | SIM|
+|Stop no candle anterior | SIM|
 |Horário de inicio e fim | SIM|
 |Horário de intervalo | SIM |
 |Trailing Stop | SIM|
