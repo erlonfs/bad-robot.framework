@@ -33,26 +33,24 @@ class Sample : public Base
       
    	void Load() 
    	{
-         //TODO
+         //Logic Here
    	};
    
    	void Execute() {
    	
-		if(!Base::ExecuteBase()) return;
+   	   if(!Base::ExecuteBase()) return;
       		
-		//Logic Here
-   		
-		Base::ShowInfo();
+         //Logic Here
    		   
-	};
+   	};
    	
-	void ExecuteOnTrade(){
-	
-		Base::ExecuteOnTradeBase();
+      void ExecuteOnTrade(){
+      
+         Base::ExecuteOnTradeBase();
          
-		//TODO
+         //Logic Here
          
-	};
+      };
 };
 ```
 
