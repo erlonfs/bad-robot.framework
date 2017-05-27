@@ -56,7 +56,7 @@ class Sample : public Base
 
 Exemplo de strategy tester
 
-![tester_estrategy](assets/tester/first_candle_test.gif)
+![tester_estrategy](https://github.com/erlonfs/mt5-first-candle-robot/tree/master/assets/tester/first_candle_test.gif)
 
 
 
