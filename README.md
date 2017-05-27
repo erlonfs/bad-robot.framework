@@ -54,6 +54,12 @@ class Sample : public Base
 };
 ```
 
+Exemplo de strategy tester
+
+![tester_estrategy](assets/tester/first_candle_test.gif)
+
+
+
 Inicialmente o projeto foi feito para atender ao mercado de BMF, mais especificamente os mini-contratos 
 de índice e dólar. Para compilar os robôs é necessario acessar o editor de código do metatrader 5.
 
