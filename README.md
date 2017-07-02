@@ -8,9 +8,9 @@ Esse projeto foi desenvolvido para facilitar a criação de robôs traders escri
 para a plataforma metatrader 5. Todos os robôs encontram em seus respectivos repositórios, acompanhados de um arquivo .set 
 de configuração da estratégia.
 
-* [line](https://github.com/erlonfs/mt5-line-robot)
-* [box](https://github.com/erlonfs/mt5-box-robot)
 * [first-candle](https://github.com/erlonfs/mt5-first-candle-robot)
+* [box](https://github.com/erlonfs/mt5-box-robot)
+* [line](https://github.com/erlonfs/mt5-line-robot)
 * [elephant-walk](https://github.com/erlonfs/mt5-elephant-walk-robot)
 
 Para comecar um novo projeto, pode se utilizar o exemplo base:
@@ -26,29 +26,28 @@ class Sample : public Base
 {
    private:
    
-   	MqlRates _rates[];
-   	ENUM_TIMEFRAMES _period;     
+	MqlRates _rates[];
    
    public:
       
    	void Load() 
    	{
-         //Logic Here
+		//Logic Here
    	};
    
    	void Execute() {
    	
-   	   if(!Base::ExecuteBase()) return;
+		if(!Base::ExecuteBase()) return;
       		
-         //Logic Here
+		//Logic Here
    		   
    	};
    	
-      void ExecuteOnTrade(){
+		void ExecuteOnTrade(){
       
-         Base::ExecuteOnTradeBase();
+			Base::ExecuteOnTradeBase();
          
-         //Logic Here
+			//Logic Here
          
       };
 };
