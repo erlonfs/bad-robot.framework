@@ -41,10 +41,10 @@ public:
                      CTrade(void);
                     ~CTrade(void);
    //--- methods of access to protected data
-   void              LogLevel(const ENUM_LOG_LEVELS log_level)   { m_log_level=log_level;               }
+   void              LogLevel(const ENUM_LOG_LEVELS log_level) { m_log_level=log_level;               }
    void              Request(MqlTradeRequest &request) const;
-   ENUM_TRADE_REQUEST_ACTIONS RequestAction(void)          const { return(m_request.action);            }
-   string            RequestActionDescription(void)        const;
+   ENUM_TRADE_REQUEST_ACTIONS RequestAction(void) const { return(m_request.action);            }
+   string            RequestActionDescription(void) const;
    ulong             RequestMagic(void)                    const { return(m_request.magic);             }
    ulong             RequestOrder(void)                    const { return(m_request.order);             }
    ulong             RequestPosition(void)                 const { return(m_request.position);          }
@@ -58,16 +58,16 @@ public:
    ulong             RequestDeviation(void)                const { return(m_request.deviation);         }
    ENUM_ORDER_TYPE   RequestType(void)                     const { return(m_request.type);              }
    string            RequestTypeDescription(void) const;
-   ENUM_ORDER_TYPE_FILLING RequestTypeFilling(void)        const { return(m_request.type_filling);      }
-   string            RequestTypeFillingDescription(void)   const;
-   ENUM_ORDER_TYPE_TIME RequestTypeTime(void)              const { return(m_request.type_time);         }
-   string            RequestTypeTimeDescription(void)      const;
+   ENUM_ORDER_TYPE_FILLING RequestTypeFilling(void) const { return(m_request.type_filling);      }
+   string            RequestTypeFillingDescription(void) const;
+   ENUM_ORDER_TYPE_TIME RequestTypeTime(void) const { return(m_request.type_time);         }
+   string            RequestTypeTimeDescription(void) const;
    datetime          RequestExpiration(void)               const { return(m_request.expiration);        }
    string            RequestComment(void)                  const { return(m_request.comment);           }
    //---
-   void              Result(MqlTradeResult &result)        const;
-   uint              ResultRetcode(void)                   const { return(m_result.retcode);            }
-   string            ResultRetcodeDescription(void)        const;
+   void              Result(MqlTradeResult &result) const;
+   uint              ResultRetcode(void) const { return(m_result.retcode);            }
+   string            ResultRetcodeDescription(void) const;
    int               ResultRetcodeExternal(void)           const { return(m_result.retcode_external);   }
    ulong             ResultDeal(void)                      const { return(m_result.deal);               }
    ulong             ResultOrder(void)                     const { return(m_result.order);              }
@@ -78,8 +78,8 @@ public:
    string            ResultComment(void)                   const { return(m_result.comment);            }
    //---
    void              CheckResult(MqlTradeCheckResult &check_result) const;
-   uint              CheckResultRetcode(void)              const { return(m_check_result.retcode);      }
-   string            CheckResultRetcodeDescription(void)   const;
+   uint              CheckResultRetcode(void) const { return(m_check_result.retcode);      }
+   string            CheckResultRetcodeDescription(void) const;
    double            CheckResultBalance(void)              const { return(m_check_result.balance);      }
    double            CheckResultEquity(void)               const { return(m_check_result.equity);       }
    double            CheckResultProfit(void)               const { return(m_check_result.profit);       }
@@ -92,6 +92,7 @@ public:
    void              SetExpertMagicNumber(const ulong magic)     { m_magic=magic;                       }
    void              SetDeviationInPoints(const ulong deviation) { m_deviation=deviation;               }
    void              SetTypeFilling(const ENUM_ORDER_TYPE_FILLING filling) { m_type_filling=filling;    }
+   bool              SetTypeFillingBySymbol(const string symbol);
    void              SetMarginMode(void) { m_margin_mode=(ENUM_ACCOUNT_MARGIN_MODE)AccountInfoInteger(ACCOUNT_MARGIN_MODE); }
    //--- methods for working with positions
    bool              PositionOpen(const string symbol,const ENUM_ORDER_TYPE order_type,const double volume,
@@ -395,6 +396,9 @@ bool CTrade::PositionClose(const string symbol,const ulong deviation)
       return(false);
 //--- clean
    ClearStructures();
+//--- check filling
+   if(!FillingCheck(symbol))
+      return(false);
    do
      {
       //--- check
@@ -425,15 +429,6 @@ bool CTrade::PositionClose(const string symbol,const ulong deviation)
       m_request.volume   =PositionGetDouble(POSITION_VOLUME);
       m_request.magic    =m_magic;
       m_request.deviation=(deviation==ULONG_MAX) ? m_deviation : deviation;
-      //--- hedging? just send order
-      if(IsHedging())
-        {
-         m_request.position=PositionGetInteger(POSITION_TICKET);
-         return(OrderSend(m_request,m_result));
-        }
-      //--- check filling
-      if(!FillingCheck(symbol))
-         return(false);
       //--- check volume
       double max_volume=SymbolInfoDouble(symbol,SYMBOL_VOLUME_MAX);
       if(m_request.volume>max_volume)
@@ -443,6 +438,12 @@ bool CTrade::PositionClose(const string symbol,const ulong deviation)
         }
       else
          partial_close=false;
+      //--- hedging? just send order
+      if(IsHedging())
+        {
+         m_request.position=PositionGetInteger(POSITION_TICKET);
+         return(OrderSend(m_request,m_result));
+        }
       //--- order send
       if(!OrderSend(m_request,m_result))
         {
@@ -478,6 +479,9 @@ bool CTrade::PositionClose(const ulong ticket,const ulong deviation)
    string symbol=PositionGetString(POSITION_SYMBOL);
 //--- clean
    ClearStructures();
+//--- check filling
+   if(!FillingCheck(symbol))
+      return(false);
 //--- check
    if((ENUM_POSITION_TYPE)PositionGetInteger(POSITION_TYPE)==POSITION_TYPE_BUY)
      {
@@ -528,6 +532,9 @@ bool CTrade::PositionCloseBy(const ulong ticket,const ulong ticket_by)
       return(false);
 //--- clean
    ClearStructures();
+//--- check filling
+   if(!FillingCheck(symbol))
+      return(false);
 //--- setting request
    m_request.action     =TRADE_ACTION_CLOSE_BY;
    m_request.position   =ticket;
@@ -550,6 +557,9 @@ bool CTrade::PositionClosePartial(const string symbol,const double volume,const 
       return(false);
 //--- clean
    ClearStructures();
+//--- check filling
+   if(!FillingCheck(symbol))
+      return(false);
 //--- check
    if(SelectPosition(symbol))
      {
@@ -603,6 +613,9 @@ bool CTrade::PositionClosePartial(const ulong ticket,const double volume,const u
    string symbol=PositionGetString(POSITION_SYMBOL);
 //--- clean
    ClearStructures();
+//--- check filling
+   if(!FillingCheck(symbol))
+      return(false);
 //--- check
    if((ENUM_POSITION_TYPE)PositionGetInteger(POSITION_TYPE)==POSITION_TYPE_BUY)
      {
@@ -642,6 +655,9 @@ bool CTrade::OrderOpen(const string symbol,const ENUM_ORDER_TYPE order_type,cons
       return(false);
 //--- clean
    ClearStructures();
+//--- check filling
+   if(!FillingCheck(symbol))  
+      return(false);    
 //--- check order type
    if(order_type==ORDER_TYPE_BUY || order_type==ORDER_TYPE_SELL)
      {
@@ -678,7 +694,6 @@ bool CTrade::OrderOpen(const string symbol,const ENUM_ORDER_TYPE order_type,cons
    m_request.price       =price;
    m_request.sl          =sl;
    m_request.tp          =tp;
-   m_request.type_filling=m_type_filling;
    m_request.type_time   =type_time;
    m_request.expiration  =expiration;
 //--- check order type
@@ -1064,12 +1079,12 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
             //--- request execution
             case SYMBOL_TRADE_EXECUTION_REQUEST:
                if(IsHedging() && request.position!=0)
-                  str=StringFormat("request %s %s position #%I64u %s at %s",
-                                   FormatOrderType(type,request.type),
-                                   DoubleToString(request.volume,2),
-                                   request.position,
-                                   request.symbol,
-                                   DoubleToString(request.price,digits));
+               str=StringFormat("request %s %s position #%I64u %s at %s",
+                                FormatOrderType(type,request.type),
+                                DoubleToString(request.volume,2),
+                                request.position,
+                                request.symbol,
+                                DoubleToString(request.price,digits));
                else
                   str=StringFormat("request %s %s %s at %s",
                                    FormatOrderType(type,request.type),
@@ -1088,15 +1103,15 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
                   str+=tmp;
                  }
                break;
-            //--- instant execution
+               //--- instant execution
             case SYMBOL_TRADE_EXECUTION_INSTANT:
                if(IsHedging() && request.position!=0)
-                  str=StringFormat("instant %s %s position #%I64u %s at %s",
-                                   FormatOrderType(type,request.type),
-                                   DoubleToString(request.volume,2),
-                                   request.position,
-                                   request.symbol,
-                                   DoubleToString(request.price,digits));
+               str=StringFormat("instant %s %s position #%I64u %s at %s",
+                                FormatOrderType(type,request.type),
+                                DoubleToString(request.volume,2),
+                                request.position,
+                                request.symbol,
+                                DoubleToString(request.price,digits));
                else
                   str=StringFormat("instant %s %s %s at %s",
                                    FormatOrderType(type,request.type),
@@ -1115,14 +1130,14 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
                   str+=tmp;
                  }
                break;
-            //--- market execution
+               //--- market execution
             case SYMBOL_TRADE_EXECUTION_MARKET:
                if(IsHedging() && request.position!=0)
-                  str=StringFormat("market %s %s position #%I64u %s",
-                                   FormatOrderType(type,request.type),
-                                   DoubleToString(request.volume,2),
-                                   request.position,
-                                   request.symbol);
+               str=StringFormat("market %s %s position #%I64u %s",
+                                FormatOrderType(type,request.type),
+                                DoubleToString(request.volume,2),
+                                request.position,
+                                request.symbol);
                else
                   str=StringFormat("market %s %s %s",
                                    FormatOrderType(type,request.type),
@@ -1140,14 +1155,14 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
                   str+=tmp;
                  }
                break;
-            //--- exchange execution
+               //--- exchange execution
             case SYMBOL_TRADE_EXECUTION_EXCHANGE:
                if(IsHedging() && request.position!=0)
-                  str=StringFormat("exchange %s %s position #%I64u %s",
-                                   FormatOrderType(type,request.type),
-                                   DoubleToString(request.volume,2),
-                                   request.position,
-                                   request.symbol);
+               str=StringFormat("exchange %s %s position #%I64u %s",
+                                FormatOrderType(type,request.type),
+                                DoubleToString(request.volume,2),
+                                request.position,
+                                request.symbol);
                else
                   str=StringFormat("exchange %s %s %s",
                                    FormatOrderType(type,request.type),
@@ -1168,35 +1183,35 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
            }
          //--- end of TRADE_ACTION_DEAL processing
          break;
-      
-      //--- setting a pending order
+
+         //--- setting a pending order
       case TRADE_ACTION_PENDING:
          str=StringFormat("%s %s %s at %s",
                           FormatOrderType(type,request.type),
                           DoubleToString(request.volume,2),
                           request.symbol,
                           FormatOrderPrice(price,request.price,request.stoplimit,digits));
-         //--- Is there SL or TP?
-         if(request.sl!=0.0)
-           {
-            tmp=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
-            str+=tmp;
-           }
-         if(request.tp!=0.0)
-           {
-            tmp=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
-            str+=tmp;
-           }
-         break;
+      //--- Is there SL or TP?
+      if(request.sl!=0.0)
+        {
+         tmp=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
+         str+=tmp;
+        }
+      if(request.tp!=0.0)
+        {
+         tmp=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
+         str+=tmp;
+        }
+      break;
 
       //--- Setting SL/TP
       case TRADE_ACTION_SLTP:
          if(IsHedging() && request.position!=0)
-            str=StringFormat("modify position #%I64u %s (sl: %s, tp: %s)",
-                             request.position,
-                             request.symbol,
-                             DoubleToString(request.sl,digits),
-                             DoubleToString(request.tp,digits));
+         str=StringFormat("modify position #%I64u %s (sl: %s, tp: %s)",
+                          request.position,
+                          request.symbol,
+                          DoubleToString(request.sl,digits),
+                          DoubleToString(request.tp,digits));
          else
             str=StringFormat("modify %s (sl: %s, tp: %s)",
                              request.symbol,
@@ -1204,24 +1219,24 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
                              DoubleToString(request.tp,digits));
          break;
 
-      //--- modifying a pending order
+         //--- modifying a pending order
       case TRADE_ACTION_MODIFY:
          str=StringFormat("modify #%I64u at %s (sl: %s tp: %s)",
                           request.order,
                           FormatOrderPrice(price_new,request.price,request.stoplimit,digits),
                           DoubleToString(request.sl,digits),
                           DoubleToString(request.tp,digits));
-         break;
+      break;
 
       //--- deleting a pending order
       case TRADE_ACTION_REMOVE:
          str=StringFormat("cancel #%I64u",request.order);
          break;
 
-      //--- close by
+         //--- close by
       case TRADE_ACTION_CLOSE_BY:
          if(IsHedging() && request.position!=0)
-            str=StringFormat("close position #%I64u by #%I64u",request.position,request.position_by);
+         str=StringFormat("close position #%I64u by #%I64u",request.position,request.position_by);
          else
             str=StringFormat("wrong action close by (#%I64u by #%I64u)",request.position,request.position_by);
          break;
@@ -1255,7 +1270,7 @@ string CTrade::FormatRequestResult(string &str,const MqlTradeRequest &request,co
          str=StringFormat("requote (%s/%s)",
                           DoubleToString(result.bid,digits),
                           DoubleToString(result.ask,digits));
-         break;
+      break;
 
       case TRADE_RETCODE_DONE:
          if(request.action==TRADE_ACTION_DEAL && 
@@ -1263,9 +1278,9 @@ string CTrade::FormatRequestResult(string &str,const MqlTradeRequest &request,co
             symbol.TradeExecution()==SYMBOL_TRADE_EXECUTION_INSTANT ||
             symbol.TradeExecution()==SYMBOL_TRADE_EXECUTION_MARKET))
             str=StringFormat("done at %s",DoubleToString(result.price,digits));
-         else
-            str="done";
-         break;
+      else
+         str="done";
+      break;
 
       case TRADE_RETCODE_DONE_PARTIAL:
          if(request.action==TRADE_ACTION_DEAL && 
@@ -1275,10 +1290,10 @@ string CTrade::FormatRequestResult(string &str,const MqlTradeRequest &request,co
             str=StringFormat("done partially %s at %s",
                              DoubleToString(result.volume,2),
                              DoubleToString(result.price,digits));
-         else
-            str=StringFormat("done partially %s",
-                             DoubleToString(result.volume,2));
-         break;
+      else
+         str=StringFormat("done partially %s",
+                          DoubleToString(result.volume,2));
+      break;
 
       case TRADE_RETCODE_REJECT            : str="rejected";                        break;
       case TRADE_RETCODE_CANCEL            : str="canceled";                        break;
@@ -1365,6 +1380,26 @@ bool CTrade::OrderCheck(const MqlTradeRequest &request,MqlTradeCheckResult &chec
    return(::OrderCheck(request,check_result));
   }
 //+------------------------------------------------------------------+
+//| Set order filling type according to symbol filling mode          |
+//+------------------------------------------------------------------+
+bool CTrade::SetTypeFillingBySymbol(const string symbol)
+  {
+//--- get possible filling policy types by symbol
+   uint filling=(uint)SymbolInfoInteger(symbol,SYMBOL_FILLING_MODE);
+   if((filling&SYMBOL_FILLING_FOK)==SYMBOL_FILLING_FOK)
+     {
+      m_type_filling=ORDER_FILLING_FOK;
+      return(true);
+     }
+   if((filling&SYMBOL_FILLING_IOC)==SYMBOL_FILLING_IOC)
+     {
+      m_type_filling=ORDER_FILLING_IOC;
+      return(true);
+     }
+//---
+   return(false);
+  }
+//+------------------------------------------------------------------+
 //| Checks and corrects type of filling policy                       |
 //+------------------------------------------------------------------+
 bool CTrade::FillingCheck(const string symbol)
@@ -1388,13 +1423,15 @@ bool CTrade::FillingCheck(const string symbol)
         {
          //--- in case of instant execution order
          //--- if the required filling policy is supported, add it to the request
-         if(m_type_filling==ORDER_FILLING_FOK && (filling & SYMBOL_FILLING_FOK)!=0)
+         if((filling&SYMBOL_FILLING_FOK)==SYMBOL_FILLING_FOK)
            {
+            m_type_filling=ORDER_FILLING_FOK;
             m_request.type_filling=m_type_filling;
             return(true);
            }
-         if(m_type_filling==ORDER_FILLING_IOC && (filling & SYMBOL_FILLING_IOC)!=0)
+         if((filling&SYMBOL_FILLING_IOC)==SYMBOL_FILLING_IOC)
            {
+            m_type_filling=ORDER_FILLING_IOC;
             m_request.type_filling=m_type_filling;
             return(true);
            }
@@ -1416,17 +1453,18 @@ bool CTrade::FillingCheck(const string symbol)
             if(!ExpirationCheck(symbol))
                m_request.type_time=ORDER_TIME_DAY;
             //--- stop order?
-            if(m_request.type==ORDER_TYPE_BUY_STOP || m_request.type==ORDER_TYPE_SELL_STOP)
+            if(m_request.type==ORDER_TYPE_BUY_STOP || m_request.type==ORDER_TYPE_SELL_STOP ||
+               m_request.type==ORDER_TYPE_BUY_LIMIT || m_request.type==ORDER_TYPE_SELL_LIMIT)
               {
                //--- in case of stop order
                //--- add the corresponding filling policy to the request
                m_request.type_filling=ORDER_FILLING_RETURN;
                return(true);
               }
-            }
+           }
          //--- in case of limit order or instant execution order
          //--- if the required filling policy is supported, add it to the request
-         if((filling & SYMBOL_FILLING_FOK)!=0)
+         if((filling&SYMBOL_FILLING_FOK)==SYMBOL_FILLING_FOK)
            {
             m_request.type_filling=m_type_filling;
             return(true);
@@ -1443,7 +1481,8 @@ bool CTrade::FillingCheck(const string symbol)
             if(!ExpirationCheck(symbol))
                m_request.type_time=ORDER_TIME_DAY;
             //--- stop order?
-            if(m_request.type==ORDER_TYPE_BUY_STOP || m_request.type==ORDER_TYPE_SELL_STOP)
+            if(m_request.type==ORDER_TYPE_BUY_STOP || m_request.type==ORDER_TYPE_SELL_STOP ||
+               m_request.type==ORDER_TYPE_BUY_LIMIT || m_request.type==ORDER_TYPE_SELL_LIMIT)
               {
                //--- in case of stop order
                //--- add the corresponding filling policy to the request
@@ -1453,7 +1492,7 @@ bool CTrade::FillingCheck(const string symbol)
            }
          //--- in case of limit order or instant execution order
          //--- if the required filling policy is supported, add it to the request
-         if((filling & SYMBOL_FILLING_IOC)!=0)
+         if((filling&SYMBOL_FILLING_IOC)==SYMBOL_FILLING_IOC)
            {
             m_request.type_filling=m_type_filling;
             return(true);
@@ -1486,19 +1525,19 @@ bool CTrade::ExpirationCheck(const string symbol)
      {
       case ORDER_TIME_GTC:
          if((flags&SYMBOL_EXPIRATION_GTC)!=0)
-            return(true);
+         return(true);
          break;
       case ORDER_TIME_DAY:
          if((flags&SYMBOL_EXPIRATION_DAY)!=0)
-            return(true);
+         return(true);
          break;
       case ORDER_TIME_SPECIFIED:
          if((flags&SYMBOL_EXPIRATION_SPECIFIED)!=0)
-            return(true);
+         return(true);
          break;
       case ORDER_TIME_SPECIFIED_DAY:
          if((flags&SYMBOL_EXPIRATION_SPECIFIED_DAY)!=0)
-            return(true);
+         return(true);
          break;
       default:
          Print(__FUNCTION__+": Unknown expiration type");
@@ -1512,7 +1551,7 @@ bool CTrade::ExpirationCheck(const string symbol)
 //+------------------------------------------------------------------+
 bool CTrade::OrderTypeCheck(const string symbol)
   {
-   bool res=false;   
+   bool res=false;
 //--- check symbol
    CSymbolInfo sym;
    if(!sym.Name((symbol==NULL)?Symbol():symbol))
