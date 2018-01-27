@@ -20,39 +20,38 @@ Para comecar um novo projeto, pode se utilizar o exemplo base:
 ```c
 #include <Trade\Trade.mqh>
 #include <Trade\PositionInfo.mqh>
-#include <Framework\Base.mqh>
+#include <BadRobot.Framework\BadRobot.mqh>
 
-class Sample : public Base
+class Sample : public BadRobot
 {
-   private:
+	private:
    
 	MqlRates _rates[];
    
-   public:
-      
-   	void Load() 
-   	{
+	public:
+	  
+	void Load() 
+	{
 		//Logic Here
-   	};
-   
-   	void Execute() {
-   	
-		if(!Base::ExecuteBase()) return;
-      		
+	};
+
+	void Execute() {
+
+		if(!BadRobot::ExecuteBase()) return;
+			
 		//Logic Here
-   		   
-   	};
-   	
-		void ExecuteOnTrade(){
-      
-			Base::ExecuteOnTradeBase();
-         
-			//Logic Here
-         
-      };
+		   
+	};
+
+	void ExecuteOnTrade(){
+
+		BadRobot::ExecuteOnTradeBase();
+	 
+		//Logic Here
+	 
+	};
 };
 ```
-
 
 Inicialmente o projeto foi feito para atender ao mercado de BMF, mais especificamente os mini-contratos 
 de índice e dólar. Para compilar os robôs é necessario acessar o editor de código do metatrader 5.
