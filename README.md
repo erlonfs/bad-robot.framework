@@ -17,7 +17,7 @@ Para comecar um novo projeto, pode se utilizar o exemplo base:
 
 [mt5-sample-robot](https://github.com/erlonfs/sample.bad-robot)
 
-![sample](https://github.com/erlonfs/sample.bad-robot/assets/helloworld/sample.gif)
+![sample](https://github.com/erlonfs/sample.bad-robot/blob/master/assets/helloworld/sample.gif)
 
 Inicialmente o projeto foi feito para atender ao mercado de BMF, mais especificamente os mini-contratos 
 de índice e dólar. Para compilar os robôs é necessario acessar o editor de código do metatrader 5.
