@@ -17,41 +17,7 @@ Para comecar um novo projeto, pode se utilizar o exemplo base:
 
 [mt5-sample-robot](https://github.com/erlonfs/sample.bad-robot)
 
-```c
-#include <Trade\Trade.mqh>
-#include <Trade\PositionInfo.mqh>
-#include <BadRobot.Framework\BadRobot.mqh>
-
-class Sample : public BadRobot
-{
-	private:
-   
-	MqlRates _rates[];
-   
-	public:
-	  
-	void Load() 
-	{
-		//Logic Here
-	};
-
-	void Execute() {
-
-		if(!BadRobot::ExecuteBase()) return;
-			
-		//Logic Here
-		   
-	};
-
-	void ExecuteOnTrade(){
-
-		BadRobot::ExecuteOnTradeBase();
-	 
-		//Logic Here
-	 
-	};
-};
-```
+![sample](https://github.com/erlonfs/sample.bad-robot/assets/helloworld/sample.gif)
 
 Inicialmente o projeto foi feito para atender ao mercado de BMF, mais especificamente os mini-contratos 
 de índice e dólar. Para compilar os robôs é necessario acessar o editor de código do metatrader 5.
