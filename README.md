@@ -19,6 +19,8 @@ Para comecar um novo projeto, pode se utilizar o exemplo base:
 
 ![sample](https://github.com/erlonfs/sample.bad-robot/blob/master/assets/helloworld/sample.gif)
 
+![sample_2](https://github.com/erlonfs/elephant-walk.bad-robot/blob/master/assets/samples/elephant-walk.gif)
+
 Inicialmente o projeto foi feito para atender ao mercado de BMF, mais especificamente os mini-contratos 
 de índice e dólar. Para compilar os robôs é necessario acessar o editor de código do metatrader 5.
 
