@@ -37,3 +37,5 @@ no mercado de negociação.
 |Saída Parcial | De acordo com as saídas configuradas, ocorre a realizacao parcial da posição, garantindo parte do lucro caso a operação volte contra a posição |SIM|
 |Gerenciamento Financeiro | Habilita o gerenciamento financeiro diário do robô, caso necessite determinar uma parada por atingir um valor de prejuizo máximo diário | SIM|
 |Notificações no App MT5 | Envia notificações para o app [metatrader5](https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5&hl=pt_BR) para android (disponivel na play store) |SIM|
+
+Quer utilizar o robô e não sabe como obter o executável apenas com o código-fonte? Entre em contato através do email erlon.efs@gmail.com para fornece-lo. E bons trades!
