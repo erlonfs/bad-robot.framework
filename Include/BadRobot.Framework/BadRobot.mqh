@@ -15,7 +15,7 @@ class BadRobot
 
 private:
 
-	//Classes as
+	//Classes 
 	MqlTick _price;
 	MqlRates _rates[];	
 	Logger _logger;	
