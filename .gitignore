@@ -9,21 +9,14 @@ experts.dat
 /Logs
 
 /Include/Experts/
-/Include/Arrays/
-/Include/Canvas/
-/Include/ChartObjects/
-/Include/Charts/
 /Include/Generic/
-/Include/Controls/
 /Include/Expert/
-/Include/Files/
 /Include/Graphics/
 /Include/Indicators/
 /Include/Math/
 /Include/MovingAverages.mqh
 /Include/OpenCL/
 /Include/Strings/
-/Include/Tools/
 /Include/VirtualKeys.mqh
 /Scripts/
 
