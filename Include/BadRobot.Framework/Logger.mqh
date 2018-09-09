@@ -5,11 +5,12 @@
 
 #property copyright "Copyright 2018, Erlon F. Souza"
 #property link      "https://github.com/erlonfs"
+#property version    "1.0"
 
 class Logger
 {
 	private:
-	string _logs[5];
+	string _logs[10];
 	
 	void Add(string txt){
 		
@@ -25,16 +26,29 @@ class Logger
 	}
 	
 	public:
-		
+	
 	void Log(string text) {
 	
 		StringToUpper(text);
+		StringTrimLeft(text);
+		StringTrimRight(text);
 		
-		text = (TimeToString(TimeCurrent(), TIME_SECONDS)) + " > " + text;	
+		string newText = (TimeToString(TimeCurrent(), TIME_SECONDS)) + " > " + text;
 		
-		if (text != _logs[0]) 
+		if(_logs[0] == NULL){
+			Add(newText);
+			return;
+		}
+		
+		string textAux[];
+		
+		StringSplit(_logs[0], 62, textAux);
+		StringTrimLeft(textAux[1]);
+		StringTrimRight(textAux[1]);
+		
+		if (text != textAux[1]) 
 		{
-			Add(text);
+			Add(newText);
 		}
 
 	}
