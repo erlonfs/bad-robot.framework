@@ -35,14 +35,14 @@ class Logger
 		
 		string newText = (TimeToString(TimeCurrent(), TIME_SECONDS)) + " > " + text;
 		
-		if(_logs[0] == NULL){
+		if(Logger::Last() == NULL){
 			Add(newText);
 			return;
 		}
 		
 		string textAux[];
 		
-		StringSplit(_logs[0], 62, textAux);
+		StringSplit(Logger::Last(), 62, textAux);
 		StringTrimLeft(textAux[1]);
 		StringTrimRight(textAux[1]);
 		
