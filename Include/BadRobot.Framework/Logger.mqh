@@ -11,6 +11,7 @@ class Logger
 {
 	private:
 	string _logs[10];
+	bool _hasChanges;
 	
 	void Add(string txt){
 		
@@ -22,6 +23,7 @@ class Logger
 		}
 		
 		_logs[0] = txt;
+		_hasChanges = true;
 		
 	}
 	
@@ -76,6 +78,18 @@ class Logger
 	string Last(){
 		return _logs[0];
 	}	
+	
+	bool HasChanges()
+	{
+		if(_hasChanges)
+		{
+			_hasChanges = false;
+			return true;
+		}
+		
+		return false;
+		
+	}
 	 
 	
 };
