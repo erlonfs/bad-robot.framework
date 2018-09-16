@@ -1,32 +1,48 @@
-# bad-robot.framework
+# BadRobot Framework
 
-Imagine um programa de computador que, observando a movimentação dos preços de um ativo ao longo do tempo, é capaz de, sozinho, sem interferência humana, determinar a hora de comprá-lo ou vendê-lo.
+Um framework de criação de robôs traders, onde todas as [definições e gerenciamentos](https://github.com/erlonfs/bad-robot.framework/#features) ficam por conta do BadRobot. Implemente apenas a estratégia sem se preocupar com o gerenciamento do trade.
 
 ## Getting Started
 
-Esse projeto foi desenvolvido para facilitar a criação de robôs traders escritos na linguagem [mql5](https://www.mql5.com/pt)
-para a plataforma metatrader 5. Todos os robôs encontram em seus respectivos repositórios, acompanhados de um arquivo .set 
-de configuração da estratégia.
+Faça o [download](https://github.com/erlonfs/bad-robot.framework/archive/master.zip) do framework ou `git clone https://github.com/erlonfs/bad-robot.framework.git`. 
+Copie ou clone o projeto dentro do diretorio de instalação do [metatrader 5](https://www.metatrader5.com/pt), na pasta MQL5.
 
-* [first-candle](https://github.com/erlonfs/first-candle.bad-robot)
-* [box](https://github.com/erlonfs/box.bad-robot)
-* [line](https://github.com/erlonfs/line.bad-robot)
-* [elephant-walk](https://github.com/erlonfs/elephant-walk.bad-robot)
+### Prerequisites
 
-Para comecar um novo projeto, pode se utilizar o exemplo base:
+Ferramentas necessárias para desenvolvimento
 
-[mt5-sample-robot](https://github.com/erlonfs/sample.bad-robot)
+```
+Metatrader 5
+MetaEditor 5
+```
 
-![sample](https://github.com/erlonfs/sample.bad-robot/blob/master/assets/helloworld/sample.gif)
+### Installing
 
-Inicialmente o projeto foi feito para atender ao mercado de BMF, mais especificamente os mini-contratos 
-de índice e dólar. Para compilar os robôs é necessario acessar o editor de código do metatrader 5.
+Execute o [metatrader 5](https://www.metatrader5.com/pt), acesse o editor de linguagem MetaQuotes (MetaEditor 5) ou pressione `f4` no terminal de negociação. Acesse o menu `Arquivo > Abrir diretório de dados`. Você está dentro do diretório da instalação do terminal, acesse a pasta `\MQL5`. Todo o codigo do framework deve ser baixado ou clonado aqui.
 
-Cada robô possui sua estratégia, contudo todos possuem funcionalidades basicas em comum, muitas delas já conhecidas 
-no mercado de negociação.
+```
+$ cd MQL5
+$ git clone https://github.com/erlonfs/bad-robot.framework.git
+```
 
-| Função | Descrição | Possui |
-| ------ | ------ | ------ |
+Até o momento temos o framework no diretório de desenvolvimento. O Proximo passo é repetir o procedimento para os robôs especificamente. O diretório onde eles deverão ser clonados será `\Experts`.
+
+Exemplo
+```
+$ cd Experts
+$ git clone https://github.com/erlonfs/first-candle.bad-robot.git
+```
+
+Apos isso, retorne ao editor de codigos, utilizado o navegador à esqueda para explorar o diretório de desenvolvimento, acesse a pasta `\Experts\first-candle.bad-robot`, e o arquivo `first_candle.mq5`. Compile o projeto ou pressione ``` F7 ```. 
+
+Dessa forma estará sendo compilado o robô na versão de instalação do framework. Para versões mais atualizadas do BadRobot acesse  https://github.com/erlonfs/bad-robot.framework/releases. Repita o procedimento para novas atualizaçôes do framework, necessitando apenas de uma nova compilação do robô.
+
+### Features
+
+Funções e ferramentas que o framework oferece:
+
+| Função | Descrição |
+| ------ | ------ |
 |Stop Gain | Saída com lucro em uma operção | SIM |
 |Stop Loss | Saída com prejuizo máximo em uma operação | SIM|
 |Stop no candle anterior | Determina um novo stop loss a cada novo candlestick, que por sua vez é ajustado para a mínima do mesmo | SIM|
@@ -38,4 +54,47 @@ no mercado de negociação.
 |Gerenciamento Financeiro | Habilita o gerenciamento financeiro diário do robô, caso necessite determinar uma parada por atingir um valor de prejuizo máximo diário | SIM|
 |Notificações no App MT5 | Envia notificações para o app [metatrader5](https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5&hl=pt_BR) para android (disponivel na play store) |SIM|
 
+Para comecar um novo projeto, pode se utilizar o exemplo [sample.bad-robot](https://github.com/erlonfs/sample.bad-robot). Pois ele já possui uma estrutura com uso do framework, faltando apenas a codificação da estratégia.
+
+## Running the tests
+
+Por limitações da linguagem [mql5](https://www.mql5.com/pt), ainda não possui testes unitários implementados no framework. Utiliza backtest do metatrader5 e técnicas de debugging.
+
+## Deployment
+
+Ao compilar o robô, um arquivo com mesmo nome `first_candle.mq5`, mas com extensão `.ex5` estará no diretório do mesmo. Ficando assim:
+```
+first_candle.ex5
+```
+
+Esse será o executável do robô. De volta ao [metatrader 5](https://www.metatrader5.com/pt), no navegador `Exibir\Navegador` (```CTRL+N ```), no grupo `Consultor expert` estará o robô, pronto para uso.
+
+## Contributing
+
+Entre em contato pra discutirmos novas idéias e então é so submeter um pull request.
+
+## Versioning
+
+Nós utilizamos  [SemVer](http://semver.org/) para versionamento. Para versões disponiveis, acesse [tags on this repository](https://github.com/erlonfs/bad-robot.framework/tags). 
+
+## Authors
+
+* **Erlon F Souza** - *Idealizador* - [erlonfs](https://github.com/erlonfs)
+
+Veja também a lista de  [contribuidores](https://github.com/erlonfs/bad-robot.framework/graphs/contributors) Participantes do projeto.
+
+## License
+
+Este projeto é licenciado sob a MIT License - veja em [LICENSE](LICENSE) para mais detalhes
+
+## See more
+
+Veja outros robôs desenvolvidos utlizando o framework
+
+* https://github.com/erlonfs/first-candle.bad-robot
+* https://github.com/erlonfs/box.bad-robot
+* https://github.com/erlonfs/elephant-walk.bad-robot
+* https://github.com/erlonfs/line.bad-robot
+
 Quer utilizar o robô e não sabe como obter o executável apenas com o código-fonte? Entre em contato através do email erlon.efs@gmail.com para fornece-lo. E bons trades!
+
