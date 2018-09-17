@@ -1,6 +1,6 @@
 # BadRobot Framework
 
-Um framework de criação de robôs traders, onde todas as [definições e gerenciamentos](https://github.com/erlonfs/bad-robot.framework/#features) ficam por conta do BadRobot. Implemente apenas a estratégia sem se preocupar com o gerenciamento do trade.
+Um framework de criação de robôs traders, onde todas as [definições e gerenciamentos](#features) ficam por conta do BadRobot. Implemente apenas a estratégia sem se preocupar com o gerenciamento do trade.
 
 ## Getting Started
 
