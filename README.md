@@ -1,15 +1,15 @@
 # BadRobot Framework
 
-![GitHub stars](https://img.shields.io/github/watchers/erlonfs/bad-robot.framework.svg?style=social)
+![Package version](https://img.shields.io/github/release/erlonfs/bad-robot.framework.svg?style=flat-square)
+[![Open Source Love png2](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/erlonfs/bad-robot.framework/)
+[![GitHub license](https://img.shields.io/github/license/erlonfs/bad-robot.framework.svg)](https://github.com/erlonfs/bad-robot.framework/blob/master/LICENSE)
+[![Join the chat at Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bad-robot-framework/)
+
 ![GitHub stars](https://img.shields.io/github/stars/erlonfs/bad-robot.framework.svg?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/erlonfs/bad-robot.framework.svg?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/erlonfs/bad-robot.framework.svg?style=social)
 ![GitHub pulls](https://img.shields.io/github/issues-pr/erlonfs/bad-robot.framework.svg?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/erlonfs/bad-robot.framework.svg?style=social)
-
-[![Open Source Love png2](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/erlonfs/bad-robot.framework/)
-[![GitHub license](https://img.shields.io/github/license/erlonfs/bad-robot.framework.svg)](https://github.com/erlonfs/bad-robot.framework/blob/master/LICENSE)
-![Package version](https://img.shields.io/github/release/erlonfs/bad-robot.framework.svg?style=flat-square)
-[![Join the chat at Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bad-robot-framework/)
 
 Um framework de criação de robôs traders, onde todas as [definições e gerenciamentos](#features) ficam por conta do BadRobot. Implemente apenas a estratégia sem se preocupar com o gerenciamento do trade.
 
