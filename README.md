@@ -1,5 +1,7 @@
 # BadRobot Framework
 
+[![Join the chat at Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bad-robot-framework/)
+
 Um framework de criação de robôs traders, onde todas as [definições e gerenciamentos](#features) ficam por conta do BadRobot. Implemente apenas a estratégia sem se preocupar com o gerenciamento do trade.
 
 ## Getting Started
