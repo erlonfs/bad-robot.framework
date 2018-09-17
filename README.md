@@ -1,6 +1,6 @@
 # BadRobot Framework
 
-![Package version](https://img.shields.io/github/release/erlonfs/bad-robot.framework.svg?style=flat-square)
+[![Package version](https://img.shields.io/github/release/erlonfs/bad-robot.framework.svg?style=flat-square)](https://github.com/erlonfs/bad-robot.framework/releases)
 [![Open Source Love png2](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/erlonfs/bad-robot.framework/)
 [![GitHub license](https://img.shields.io/github/license/erlonfs/bad-robot.framework.svg)](https://github.com/erlonfs/bad-robot.framework/blob/master/LICENSE)
 [![Join the chat at Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bad-robot-framework/)
