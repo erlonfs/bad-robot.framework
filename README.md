@@ -6,6 +6,7 @@
 ![GitHub pulls](https://img.shields.io/github/issues-pr/erlonfs/bad-robot.framework.svg?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/erlonfs/bad-robot.framework.svg?style=social)
 
+![Package version](https://img.shields.io/github/release/erlonfs/bad-robot.framework.svg?style=flat-square)
 [![Join the chat at Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bad-robot-framework/)
 
 Um framework de criação de robôs traders, onde todas as [definições e gerenciamentos](#features) ficam por conta do BadRobot. Implemente apenas a estratégia sem se preocupar com o gerenciamento do trade.
