@@ -25,6 +25,8 @@ class Logger
 		_logs[0] = txt;
 		_hasChanges = true;
 		
+		printf(txt);//TODO remove later
+		
 	}
 	
 	public:
