@@ -7,6 +7,8 @@
 #property link      "https://github.com/erlonfs"
 #property version    "1.0"
 
+#define MAX_SIZE_TEXT (50)
+
 class Logger
 {
 	private:
@@ -31,11 +33,28 @@ class Logger
 	
 	public:
 	
-	void Log(string text) {
+	Logger(){
+		
+	}
 	
+	Logger(const Logger& other){
+		this = other;
+	}
+	
+	void Log(string text) 
+	{
+		
+		if(text == NULL) return;
+		
 		StringToUpper(text);
 		StringTrimLeft(text);
 		StringTrimRight(text);
+		
+		int length = StringLen(text);
+		if(length > MAX_SIZE_TEXT + 3)
+		{
+			text = StringSubstr(text, 0, MAX_SIZE_TEXT - 3) + "...";
+		}
 		
 		string newText = (TimeToString(TimeCurrent(), TIME_SECONDS)) + " > " + text;
 		

@@ -18,47 +18,47 @@ class BadRobotPrompt : public BadRobotCore
 	
 	void ShowInfo()
 	{					
-		if(!_isRewrite) return;
+		if(!GetIsRewrite()) return;
 
 		Comment("--------------------------------------" +
-			"\n" + GetRobotName() + " " + ToPeriodText(_period) + " " + GetRobotVersion() + "\nFRAMEWORK " + version +
-			(_lastTextInfo != NULL ? "\n--------------------------------------\n" + _lastTextInfo : "") +
+			"\n" + GetRobotName() + " " + ToPeriodText(GetPeriod()) + " " + GetRobotVersion() + "\nFRAMEWORK " + version +
+			(GetLastTextInfo() != NULL ? "\n--------------------------------------\n" + GetLastTextInfo() : "") +
 			
-			(!_isAlertMode ?
+			(!GetIsModeAlert() ?
 			   "\n--------------------------------------" +
-   			"\nVOLUME ATUAL " + (HasPositionOpen() ? (GetPositionType() == POSITION_TYPE_SELL ? "-" : "") + (string)GetPositionVolume() : "0") +
-   			"\nTP " + DoubleToString(_stopGain, _Digits) + " SL " + DoubleToString(_stopLoss, _Digits)
+   			"\nVOLUME ATUAL " + GetPositionVolumeText() +
+   			"\nTP " + DoubleToString(GetStopGain(), _Digits) + " SL " + DoubleToString(GetStopLoss(), _Digits)
    			: "\nMODO ALERTA ATIVADO"
 			) + "\n--------------------------------------" +
 			
-			(_isStopOnLastCandle ? "\nSTOP CANDLE ANTERIOR " + ToPeriodText(_periodStopOnLastCandle) : "") +
+			(GetIsStopOnLastCandle() ? "\nSTOP CANDLE ANTERIOR " + ToPeriodText(GetPeriodStopOnLastCandle()) : "") +
 			
-			(_isTrailingStop ? "\nTRAILING STOP " + (string)(GetPositionType() == POSITION_TYPE_SELL ? 
-			                                                 GetPositionPriceOpen() - _trailingStopInicio : 
-			                                                 GetPositionPriceOpen() + _trailingStopInicio) + " " + DoubleToString(_trailingStop, _Digits) : "") +
+			(GetIsTrailingStop() ? "\nTRAILING STOP " + (string)(GetPositionType() == POSITION_TYPE_SELL ? 
+			                                                 GetPositionPriceOpen() - GetTrailingStopInicio() : 
+			                                                 GetPositionPriceOpen() + GetTrailingStopInicio()) + " " + DoubleToString(GetTrailingStop(), _Digits) : "") +
 			                                                 
-			(_isBreakEven ? "\nBREAK EVEN " + (_isBreakEvenExecuted ? "" : (string)(GetPositionType() == POSITION_TYPE_SELL ? 
-			                                                                        GetPositionPriceOpen() - _breakEven :
-			                                                                        GetPositionPriceOpen() + _breakEven)) : "") +
-			(_isParcial ? "\nPARCIAL " + 
-				(!_isPrimeiraParcial && _primeiraParcialInicio > 0 ? DoubleToString((GetPositionType() == POSITION_TYPE_SELL ? 
-				                                                                     GetPositionPriceOpen() - _primeiraParcialInicio : 
-				                                                                     GetPositionPriceOpen() + _primeiraParcialInicio), _Digits) + " " + (string)_primeiraParcialVolume + " " : "") +
+			(GetIsBreakEven() ? "\nBREAK EVEN " + (GetIsBreakEvenExecuted() ? "" : (string)(GetPositionType() == POSITION_TYPE_SELL ? 
+			                                                                        GetPositionPriceOpen() - GetBreakEven() :
+			                                                                        GetPositionPriceOpen() + GetBreakEven())) : "") +
+			(GetIsParcial() ? "\nPARCIAL " + 
+				(!GetIsPrimeiraParcial() && GetPrimeiraParcialInicio() > 0 ? DoubleToString((GetPositionType() == POSITION_TYPE_SELL ? 
+				                                                                     GetPositionPriceOpen() - GetPrimeiraParcialInicio() : 
+				                                                                     GetPositionPriceOpen() + GetPrimeiraParcialInicio()), _Digits) + " " + (string)GetPrimeiraParcialVolume() + " " : "") +
 				                                                                     
-				(!_isSegundaParcial && _segundaParcialInicio > 0 ? " | " + DoubleToString((GetPositionType() == POSITION_TYPE_SELL ? 
-				                                                                           GetPositionPriceOpen() - _segundaParcialInicio : 
-				                                                                           GetPositionPriceOpen() + _segundaParcialInicio), _Digits) + " " + (string)_segundaParcialVolume + " " : "") +
+				(!GetIsSegundaParcial() && GetSegundaParcialInicio() > 0 ? " | " + DoubleToString((GetPositionType() == POSITION_TYPE_SELL ? 
+				                                                                           GetPositionPriceOpen() - GetSegundaParcialInicio() : 
+				                                                                           GetPositionPriceOpen() + GetSegundaParcialInicio()), _Digits) + " " + (string)GetSegundaParcialVolume() + " " : "") +
 				                                                                           
-				(!_isTerceiraParcial && _terceiraParcialInicio > 0 ? " | " + DoubleToString((GetPositionType() == POSITION_TYPE_SELL ? 
-				                                                                             GetPositionPriceOpen() - _terceiraParcialInicio : 
-				                                                                             GetPositionPriceOpen() + _terceiraParcialInicio), _Digits) + " " + (string)_terceiraParcialVolume + " "  : "") 
+				(!GetIsTerceiraParcial() && GetTerceiraParcialInicio() > 0 ? " | " + DoubleToString((GetPositionType() == POSITION_TYPE_SELL ? 
+				                                                                             GetPositionPriceOpen() - GetTerceiraParcialInicio() : 
+				                                                                             GetPositionPriceOpen() + GetTerceiraParcialInicio()), _Digits) + " " + (string)GetTerceiraParcialVolume() + " "  : "") 
 			: "") +
 			
-			(_isGerenciamentoFinanceiro ? "\nPROFIT " + (string)GetTotalLucro() : "") +
+			(GetIsGerenciamentoFinanceiro() ? "\nPROFIT " + (string)GetTotalLucro() : "") +
 			
 			"\n--------------------------------------" +
 
-			("\n" + _logger.Get()));
+			("\n" + GetLogger().Get()));
 
 	}
 		
