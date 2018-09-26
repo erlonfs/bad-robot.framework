@@ -37,6 +37,10 @@ class Logger
 		
 	}
 	
+	~Logger(){
+		
+	}
+	
 	Logger(const Logger& other){
 		this = other;
 	}
