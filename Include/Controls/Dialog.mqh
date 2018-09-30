@@ -255,6 +255,10 @@ bool CDialog::CreateCaption(void)
    m_caption.Alignment(WND_ALIGN_WIDTH,off,0,off,0);
    if(!m_panel_flag)
       m_caption.PropFlags(WND_PROP_FLAG_CAN_DRAG);
+      
+   m_caption.FontSize(8);
+   m_caption.Font("Tahoma");
+   
 //--- succeed
    return(true);
   }
