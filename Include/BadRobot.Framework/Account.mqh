@@ -5,7 +5,6 @@
 
 #property copyright "Copyright 2018, Erlon F. Souza"
 #property link      "https://github.com/erlonfs"
-#property version    "1.0"
 
 class Account
 {
