@@ -968,7 +968,7 @@ bool CChartObject::Load(const int file_handle)
      }
 //--- read number of levels
    num=FileReadInteger(file_handle,INT_VALUE);
-   if(!ObjectSetInteger(m_chart_id,m_name,OBJPROP_LEVELS,0,FileReadLong(file_handle)))
+   if(!ObjectSetInteger(m_chart_id,m_name,OBJPROP_LEVELS,0,num))
       return(false);
 //--- read levels
    if(num!=0)

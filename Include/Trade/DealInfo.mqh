@@ -135,7 +135,7 @@ string CDealInfo::EntryDescription(void) const
   {
    string str;
 //---
-   switch(Entry())
+   switch(CDealInfo::Entry())
      {
       case DEAL_ENTRY_IN     : str="In entry";      break;
       case DEAL_ENTRY_OUT    : str="Out entry";     break;

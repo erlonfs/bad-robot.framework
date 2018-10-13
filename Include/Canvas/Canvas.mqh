@@ -352,6 +352,7 @@ bool CCanvas::Attach(const long chart_id,const string objname,ENUM_COLOR_FORMAT 
       rcname=StringSubstr(rcname,StringFind(rcname,"::"));
       if(ResourceReadImage(rcname,m_pixels,m_width,m_height))
         {
+         m_chart_id=chart_id;
          m_objname=objname;
          m_rcname=rcname;
          m_format=clrfmt;
@@ -377,6 +378,7 @@ bool CCanvas::Attach(const long chart_id,const string objname,const int width,co
          if(ResourceCreate("::"+objname,m_pixels,width,height,0,0,0,clrfmt) && 
             ObjectSetString(chart_id,objname,OBJPROP_BMPFILE,"::"+objname))
            {
+            m_chart_id=chart_id;
             m_width=width;
             m_height=height;
             m_objname=objname;
