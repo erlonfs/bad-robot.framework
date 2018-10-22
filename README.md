@@ -8,7 +8,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/erlonfs/bad-robot.framework.svg?style=social)](https://github.com/erlonfs/bad-robot.framework/stargazers)
 [![GitHub watchers](https://img.shields.io/github/watchers/erlonfs/bad-robot.framework.svg?style=social)](https://github.com/erlonfs/bad-robot.framework/watchers)
 [![GitHub issues](https://img.shields.io/github/issues/erlonfs/bad-robot.framework.svg?style=social)](https://github.com/erlonfs/bad-robot.framework/issues)
-![GitHub pulls](https://img.shields.io/github/issues-pr/erlonfs/bad-robot.framework.svg?style=social)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/erlonfs/bad-robot.framework.svg?style=social)](https://github.com/erlonfs/bad-robot.framework/pulls)
 ![GitHub forks](https://img.shields.io/github/forks/erlonfs/bad-robot.framework.svg?style=social)
 
 Um framework de criação de robôs traders, onde todas as [definições e gerenciamentos](#features) ficam por conta do BadRobot. Implemente apenas a estratégia sem se preocupar com o gerenciamento do trade.
