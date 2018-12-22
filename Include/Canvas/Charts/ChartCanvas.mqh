@@ -117,7 +117,7 @@ public:
    void              MaxDescrLen(const uint value);
    //--- show flags
    void              AllowedShowFlags(const uint flags);
-   bool              ShowFlags(void) const { return(m_show_flags); }
+   uint              ShowFlags(void) const { return(m_show_flags); }
    void              ShowFlags(const uint flags);
    bool              IsShowLegend(void)          const { return(IS_SHOW_LEGEND);       }
    bool              IsShowScaleLeft(void)       const { return(IS_SHOW_SCALE_LEFT);   }

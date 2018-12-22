@@ -197,7 +197,7 @@ bool CChartObjectGannFan::Downtrend(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_DIRECTION));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_DIRECTION));
   }
 //+------------------------------------------------------------------+
 //| Set value for the "Downtrend" property                           |
@@ -334,7 +334,7 @@ bool CChartObjectGannGrid::Downtrend(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_DIRECTION));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_DIRECTION));
   }
 //+------------------------------------------------------------------+
 //| Set the property value "Downtrend"                               |

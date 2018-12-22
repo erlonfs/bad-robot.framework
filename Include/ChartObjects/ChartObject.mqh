@@ -310,7 +310,7 @@ bool CChartObject::Background(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_BACK));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_BACK));
   }
 //+------------------------------------------------------------------+
 //| Set the "Draw object as background" flag                         |
@@ -332,7 +332,7 @@ bool CChartObject::Fill(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_FILL));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_FILL));
   }
 //+------------------------------------------------------------------+
 //| Set the "Filling" flag                                           |
@@ -376,7 +376,7 @@ bool CChartObject::Selected(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_SELECTED));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_SELECTED));
   }
 //+------------------------------------------------------------------+
 //| Set the "selected" flag                                          |
@@ -398,7 +398,7 @@ bool CChartObject::Selectable(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_SELECTABLE));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_SELECTABLE));
   }
 //+------------------------------------------------------------------+
 //| Set flag the "selectable" flag                                   |

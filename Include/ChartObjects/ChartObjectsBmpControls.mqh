@@ -372,7 +372,7 @@ bool CChartObjectBmpLabel::State(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return((int)ObjectGetInteger(m_chart_id,m_name,OBJPROP_STATE));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_STATE));
   }
 //+------------------------------------------------------------------+
 //| Set the State property                                           |

@@ -219,7 +219,7 @@ bool CChartObjectFiboArc::Ellipse(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_ELLIPSE));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_ELLIPSE));
   }
 //+------------------------------------------------------------------+
 //| Set value for the "Ellipse" property                             |

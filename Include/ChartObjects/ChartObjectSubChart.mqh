@@ -261,7 +261,7 @@ bool CChartObjectSubChart::DateScale(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_DATE_SCALE));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_DATE_SCALE));
   }
 //+------------------------------------------------------------------+
 //| Set the "time scale" flag                                        |
@@ -283,7 +283,7 @@ bool CChartObjectSubChart::PriceScale(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_PRICE_SCALE));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_PRICE_SCALE));
   }
 //+------------------------------------------------------------------+
 //| Set the "price scale" flag                                       |

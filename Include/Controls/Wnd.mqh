@@ -1,6 +1,6 @@
 //+------------------------------------------------------------------+
 //|                                                          Wnd.mqh |
-//|                   Copyright 2009-2017, MetaQuotes Software Corp. |
+//|                   Copyright 2009-2018, MetaQuotes Software Corp. |
 //|                                              http://www.mql5.com |
 //+------------------------------------------------------------------+
 #include "Rect.mqh"
@@ -734,14 +734,14 @@ bool CDragWnd::OnDragProcess(const int x,const int y)
    int dx=x-m_mouse_x;
    int dy=y-m_mouse_y;
 //--- check shift
-   if(Left()+dx<m_limit_left)
-      dx=m_limit_left-Left();
-   if(Top()+dy<m_limit_top)
-      dy=m_limit_top-Top();
    if(Right()+dx>m_limit_right)
       dx=m_limit_right-Right();
+   if(Left()+dx<m_limit_left)
+      dx=m_limit_left-Left();
    if(Bottom()+dy>m_limit_bottom)
       dy=m_limit_bottom-Bottom();
+   if(Top()+dy<m_limit_top)
+      dy=m_limit_top-Top();
 //--- shift
    Shift(dx,dy);
 //--- save

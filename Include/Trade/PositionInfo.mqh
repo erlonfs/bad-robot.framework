@@ -329,22 +329,8 @@ bool CPositionInfo::SelectByTicket(const ulong ticket)
 //+------------------------------------------------------------------+
 bool CPositionInfo::SelectByIndex(const int index)
   {
-   ENUM_ACCOUNT_MARGIN_MODE margin_mode=(ENUM_ACCOUNT_MARGIN_MODE)AccountInfoInteger(ACCOUNT_MARGIN_MODE);
-//---
-   if(margin_mode==ACCOUNT_MARGIN_MODE_RETAIL_HEDGING)
-     {
-      ulong ticket=PositionGetTicket(index);
-      if(ticket==0)
-         return(false);
-     }
-   else
-     {
-      string name=PositionGetSymbol(index);
-      if(name=="")
-         return(false);
-     }
-//---
-   return(true);
+   ulong ticket=PositionGetTicket(index);
+   return(ticket>0);
   }
 //+------------------------------------------------------------------+
 //| Stored position's current state                                  |

@@ -207,7 +207,7 @@ bool CChart::Foreground(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_FOREGROUND));
+   return((bool)ChartGetInteger(m_chart_id,CHART_FOREGROUND));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "Foreground" property                           |
@@ -229,7 +229,7 @@ bool CChart::Shift(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SHIFT));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SHIFT));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "Shift"property                                 |
@@ -277,7 +277,7 @@ bool CChart::AutoScroll(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_AUTOSCROLL));
+   return((bool)ChartGetInteger(m_chart_id,CHART_AUTOSCROLL));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "AutoScroll" property                           |
@@ -325,7 +325,7 @@ bool CChart::ScaleFix(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SCALEFIX));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SCALEFIX));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ScaleFix" property                             |
@@ -347,7 +347,7 @@ bool CChart::ScaleFix_11(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SCALEFIX_11));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SCALEFIX_11));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ScaleFix_11" property                          |
@@ -413,7 +413,7 @@ bool CChart::ScalePPB(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SCALE_PT_PER_BAR));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SCALE_PT_PER_BAR));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ScalePointsPerBar" property                    |
@@ -457,7 +457,7 @@ bool CChart::ShowOHLC(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SHOW_OHLC));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SHOW_OHLC));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ShowOHLC" property                             |
@@ -479,7 +479,7 @@ bool CChart::ShowLineBid(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SHOW_BID_LINE));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SHOW_BID_LINE));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ShowLineBid" property                          |
@@ -501,7 +501,7 @@ bool CChart::ShowLineAsk(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SHOW_ASK_LINE));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SHOW_ASK_LINE));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ShowLineAsk" property                          |
@@ -523,7 +523,7 @@ bool CChart::ShowLastLine(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SHOW_LAST_LINE));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SHOW_LAST_LINE));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ShowLastLine" property                         |
@@ -545,7 +545,7 @@ bool CChart::ShowPeriodSep(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SHOW_PERIOD_SEP));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SHOW_PERIOD_SEP));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ShowPeriodSep" property                        |
@@ -567,7 +567,7 @@ bool CChart::ShowGrid(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SHOW_GRID));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SHOW_GRID));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ShowGrid" property                             |
@@ -611,7 +611,7 @@ bool CChart::ShowObjectDescr(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_SHOW_OBJECT_DESCR));
+   return((bool)ChartGetInteger(m_chart_id,CHART_SHOW_OBJECT_DESCR));
   }
 //+------------------------------------------------------------------+
 //| Set value of the "ShowObjectDescr" property                      |
@@ -1018,7 +1018,7 @@ bool CChart::WindowIsVisible(const int num) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ChartGetInteger(m_chart_id,CHART_WINDOW_IS_VISIBLE,num));
+   return((bool)ChartGetInteger(m_chart_id,CHART_WINDOW_IS_VISIBLE,num));
   }
 //+------------------------------------------------------------------+
 //| Get value of the "WindowHandle" property                         |
@@ -1115,7 +1115,7 @@ bool CChart::IsObject(void) const
   {
 //--- check
    if(m_chart_id==-1)
-      return(EMPTY_VALUE);
+      return(false);
 //--- result
    return((bool)ChartGetInteger(m_chart_id,CHART_IS_OBJECT));
   }
@@ -1192,7 +1192,7 @@ bool CChart::GetDouble(const ENUM_CHART_PROPERTY_DOUBLE prop_id,const int subwin
   {
 //--- check
    if(m_chart_id==-1)
-      return(0);
+      return(false);
 //--- result
    return(ChartGetDouble(m_chart_id,prop_id,subwindow,value));
   }

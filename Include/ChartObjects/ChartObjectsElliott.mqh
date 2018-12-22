@@ -90,7 +90,7 @@ bool CChartObjectElliottWave3::Lines(void) const
    if(m_chart_id==-1)
       return(false);
 //--- result
-   return(ObjectGetInteger(m_chart_id,m_name,OBJPROP_DRAWLINES));
+   return((bool)ObjectGetInteger(m_chart_id,m_name,OBJPROP_DRAWLINES));
   }
 //+------------------------------------------------------------------+
 //| Set value for the "Lines" property                               |

@@ -41,9 +41,9 @@ public:
                      CTrade(void);
                     ~CTrade(void);
    //--- methods of access to protected data
-   void              LogLevel(const ENUM_LOG_LEVELS log_level) { m_log_level=log_level;               }
+   void              LogLevel(const ENUM_LOG_LEVELS log_level)   { m_log_level=log_level;               }
    void              Request(MqlTradeRequest &request) const;
-   ENUM_TRADE_REQUEST_ACTIONS RequestAction(void) const { return(m_request.action);            }
+   ENUM_TRADE_REQUEST_ACTIONS RequestAction(void)          const { return(m_request.action);            }
    string            RequestActionDescription(void) const;
    ulong             RequestMagic(void)                    const { return(m_request.magic);             }
    ulong             RequestOrder(void)                    const { return(m_request.order);             }
@@ -58,15 +58,15 @@ public:
    ulong             RequestDeviation(void)                const { return(m_request.deviation);         }
    ENUM_ORDER_TYPE   RequestType(void)                     const { return(m_request.type);              }
    string            RequestTypeDescription(void) const;
-   ENUM_ORDER_TYPE_FILLING RequestTypeFilling(void) const { return(m_request.type_filling);      }
+   ENUM_ORDER_TYPE_FILLING RequestTypeFilling(void)        const { return(m_request.type_filling);      }
    string            RequestTypeFillingDescription(void) const;
-   ENUM_ORDER_TYPE_TIME RequestTypeTime(void) const { return(m_request.type_time);         }
+   ENUM_ORDER_TYPE_TIME RequestTypeTime(void)              const { return(m_request.type_time);         }
    string            RequestTypeTimeDescription(void) const;
    datetime          RequestExpiration(void)               const { return(m_request.expiration);        }
    string            RequestComment(void)                  const { return(m_request.comment);           }
    //---
    void              Result(MqlTradeResult &result) const;
-   uint              ResultRetcode(void) const { return(m_result.retcode);            }
+   uint              ResultRetcode(void)                   const { return(m_result.retcode);            }
    string            ResultRetcodeDescription(void) const;
    int               ResultRetcodeExternal(void)           const { return(m_result.retcode_external);   }
    ulong             ResultDeal(void)                      const { return(m_result.deal);               }
@@ -78,7 +78,7 @@ public:
    string            ResultComment(void)                   const { return(m_result.comment);            }
    //---
    void              CheckResult(MqlTradeCheckResult &check_result) const;
-   uint              CheckResultRetcode(void) const { return(m_check_result.retcode);      }
+   uint              CheckResultRetcode(void)              const { return(m_check_result.retcode);      }
    string            CheckResultRetcodeDescription(void) const;
    double            CheckResultBalance(void)              const { return(m_check_result.balance);      }
    double            CheckResultEquity(void)               const { return(m_check_result.equity);       }
@@ -166,10 +166,10 @@ CTrade::CTrade(void) : m_async_mode(false),
 //--- initialize protected data
    ClearStructures();
 //--- check programm mode
-   if(MQL5InfoInteger(MQL5_OPTIMIZATION))
-      m_log_level=LOG_LEVEL_NO;
    if(MQL5InfoInteger(MQL5_TESTING))
       m_log_level=LOG_LEVEL_ALL;
+   if(MQL5InfoInteger(MQL5_OPTIMIZATION))
+      m_log_level=LOG_LEVEL_NO;
   }
 //+------------------------------------------------------------------+
 //| Destructor                                                       |
