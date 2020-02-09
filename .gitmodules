@@ -1,3 +1,15 @@
 [submodule "Experts/elephant-walk.bad-robot"]
 	path = Experts/elephant-walk.bad-robot
 	url = https://github.com/erlonfs/elephant-walk.bad-robot.git
+[submodule "Experts/first-candle.bad-robot"]
+	path = Experts/first-candle.bad-robot
+	url = https://github.com/erlonfs/first-candle.bad-robot.git
+[submodule "Experts/box.bad-robot"]
+	path = Experts/box.bad-robot
+	url = https://github.com/erlonfs/box.bad-robot.git
+[submodule "Experts/line.bad-robot"]
+	path = Experts/line.bad-robot
+	url = https://github.com/erlonfs/line.bad-robot.git
+[submodule "Experts/traderpad.bad-robot"]
+	path = Experts/traderpad.bad-robot
+	url = https://github.com/erlonfs/traderpad.bad-robot.git
