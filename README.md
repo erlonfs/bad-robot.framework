@@ -48,6 +48,8 @@ Apos isso, retorne ao editor de codigos, utilizado o navegador à esqueda para e
 
 Dessa forma estará sendo compilado o robô na versão de instalação do framework. Para versões mais atualizadas do BadRobot acesse  https://github.com/erlonfs/bad-robot.framework/releases. Repita o procedimento para novas atualizaçôes do framework, necessitando apenas de uma nova compilação do robô.
 
+Veja como instalar utilizando o [git bash](install_from_git_bash.md)
+
 ### Features
 
 Funções e ferramentas que o framework oferece:
