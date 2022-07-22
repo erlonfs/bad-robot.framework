@@ -109,5 +109,3 @@ Veja outros robôs desenvolvidos utlizando o framework
 * https://github.com/erlonfs/elephant-walk.bad-robot
 * https://github.com/erlonfs/line.bad-robot
 
-Quer utilizar o robô e não sabe como obter o executável apenas com o código-fonte? Entre em contato através do email erlon.efs@gmail.com para fornece-lo. E bons trades!
-
